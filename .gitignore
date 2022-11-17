@@ -1,0 +1,9 @@
+# Ignore all
+*
+
+# But...
+!.gitignore
+!.env
+!compose*.yml
+!Dockerfile*
+!.dockerignore
