@@ -9,3 +9,5 @@
 !.dockerignore
 !README.md
 !setup.sh
+!scripts
+!scripts/*

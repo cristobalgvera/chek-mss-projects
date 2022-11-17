@@ -1,21 +1,35 @@
 #!/bin/bash
 
-copy_docker_files() {
-  local directories
-  directories=("$(ls -d */)")
+optstring=":dgh"
 
-  local files=(
-    Dockerfile
-    .dockerignore
-  )
+# Check if the user has passed any arguments
+while getopts "$optstring" arg
+do 
+  case "$arg" in
+    d) add_docker_files=1;;
+    g) add_git_repositories=1;;
+    h) sh ./scripts/usage.sh;;
+    *) 
+      echo "Invalid option: -${OPTARG}" >&2
+      echo
+      sh ./scripts/usage.sh
+      ;;
+  esac 
+done
 
-  for directory in $directories; do
-    printf "Copying files to './%s'\n" "$directory"
+# If no flags are specified, then show usage script
+if [[ ${#} -eq 0 ]]; then
+  echo "No arguments specified"
+  echo
+  sh ./scripts/usage.sh
+fi
 
-    for file in "${files[@]}"; do
-      cp "$file" ./"$directory$file"
-    done
-  done
-}
+if [[ -n $add_git_repositories ]]; then
+  echo ">> Adding Git repositories"
+  sh ./scripts/get_repositories.sh
+fi
 
-copy_docker_files
+if [[ -n $add_docker_files ]]; then
+  echo ">> Adding Docker files"
+  sh ./scripts/copy_docker_files.sh
+fi
