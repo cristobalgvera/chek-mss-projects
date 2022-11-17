@@ -30,6 +30,8 @@ In order to use this project, you should follow this steps:
    in the **root folder of every project** that will be launch
    in [`compose.yml`](./compose.yml).
 
+   > You can run `sh setup.sh` in order to do it automatically.
+
 1. Remember to setup your project required files like a `.env` or any other
    specific one.
 
