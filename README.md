@@ -4,7 +4,7 @@ This project helps to easily launch stages for Remittance's microservices.
 
 ## TL;DR
 
-Use a single command to create networks, volumes, images, and containers.
+Use a single command to has a ready to develop, check, and deploy environment.
 
 ```bash
 # Launch containers
@@ -23,15 +23,15 @@ In order to use this project, you should follow this steps:
 
 1. Add all microservices projects that you need to launch to this folder.
 
-   > All files in this folder will be ignored, so you can just execute
-   > `git clone YOUR_REPO` inside this folder and all will work well
+   > All projects in this folder will be ignored, so you can just execute
+   > `git clone YOUR_REPO` inside this folder and they will work well
    > without any\* further action over your actual project.
    >
    > You can run `sh setup.sh -g` in order to do it automatically.
 
 1. :exclamation: **REMEMBER**:
 
-   - Checkout to the proper `development` of `feature` branch.
+   - Checkout to the proper `development` or `feature` branch.
 
    - Setup your required files like a `.env` or any other specific one to the
      project itself.
@@ -57,8 +57,7 @@ In order to use this project, you should follow this steps:
 ## Setup script
 
 It is provided a useful [`setup.sh`](./setup.sh) script that will help you to
-add all repositories right from Bitbucket and then add the required Docker files
-to all of them.
+add all repositories right from Bitbucket and setup all the required files.
 
 Script works as follows:
 
