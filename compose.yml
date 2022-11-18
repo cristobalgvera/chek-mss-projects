@@ -1,12 +1,13 @@
 ---
 services:
   redis:
-    hostname: redislocal
+    hostname: ${REDIS_HOSTNAME}
     image: redis:7.0.5-alpine
     restart: always
-    command: redis-server --save 20 1 --loglevel warning --requirepass a7e48832-e6f9-4241-91c4-bd436487ba65
+    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_AUTH
     environment:
-      REDIS_HOST: redislocal
+      REDIS_HOST: ${REDIS_HOSTNAME}
+      REDIS_AUTH: ${REDIS_AUTH}
     ports:
       - 6379:6379
     volumes:
@@ -16,6 +17,9 @@ services:
     build:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
+    environment:
+      REDIS_HOST: ${REDIS_HOSTNAME}
+      REDIS_AUTH: ${REDIS_AUTH}
     expose:
       - 8080
     ports:
