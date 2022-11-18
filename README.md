@@ -41,8 +41,10 @@ In order to use this project, you should follow this steps:
 
    > You can run `sh setup.sh -d` in order to do it automatically.
 
-1. _(Optional)_ If your will develop new features, is mandatory install Node
+1. _(Optional)_ If your will develop new features, is **mandatory** install Node
    dependencies locally.
+
+   > You can run `sh setup.sh -n` in order to do it automatically.
 
 ---
 
@@ -62,6 +64,9 @@ sh setup.sh -g
 
 # Add all required Docker files to repositories
 sh setup.sh -d
+
+# Install dependencies on all projects
+sh setup.sh -n
 
 # Show script help
 sh setup.sh -h
