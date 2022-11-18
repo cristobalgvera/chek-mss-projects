@@ -1,6 +1,5 @@
 services:
   redis:
-    container_name: redislocal
     hostname: redislocal
     image: redis:7.0.5-alpine
     restart: always
