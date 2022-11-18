@@ -46,9 +46,12 @@ In order to use this project, you should follow this steps:
 
    > You can run `sh setup.sh -n` in order to do it automatically.
 
+1. :rocket: Launch your projects with `docker compose up -d` (add
+   `--build`, in case you need)
+
 ---
 
-**\*** _You will need to modify only the Docker related files of your project._
+**\*** _Perhaps you will need to modify only the Docker related files of your project._
 
 ## Setup script
 
