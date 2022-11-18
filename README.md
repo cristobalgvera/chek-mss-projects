@@ -7,8 +7,11 @@ This project helps to easily launch stages for Remittance's microservices.
 Use a single command to has a ready to develop, check, and deploy environment.
 
 ```bash
-# Launch containers
+# Launch containers in Dev context
 docker compose up -d
+
+# Launc containers in QA or Production mode
+docker compose -f compose.yml -d
 ```
 
 ## How to use it
@@ -47,8 +50,9 @@ In order to use this project, you should follow this steps:
 
    > You can run `sh setup.sh -n` in order to do it automatically.
 
-1. :rocket: Launch your projects with `docker compose up -d` (add
-   `--build`, in case you need)
+1. :rocket: Launch your projects with `docker compose up -d` (`dev`) or
+   `docker compose -f compose.yml -d` (`prod` or `qa`) (add `--build`, in case you
+   need it)
 
 ---
 
@@ -91,11 +95,14 @@ there is no way to know it programatically._
 ## Useful commands
 
 ```bash
-# Launch services creating images
+# Launch services creating images in Dev context
 docker compose up -d <service_name>
 
-# Launch services rebuilding images (i.e., when you change the `TARGET_STAGE`)
+# Launch services rebuilding images in Dev context (i.e., when you change the `TARGET_STAGE`)
 docker compose up -d --build <service_name>
+
+# Launch services in QA or Production context
+docker compose -f compose.yml up -d [--build] <service_name>
 
 # Delete composed services
 docker compose down
