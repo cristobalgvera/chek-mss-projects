@@ -5,7 +5,7 @@
 
 ## Files
 !.gitignore
-!.env
+!.env.example
 !compose*.yml
 !Dockerfile*
 !.dockerignore

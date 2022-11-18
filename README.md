@@ -15,9 +15,10 @@ docker compose up -d
 
 In order to use this project, you should follow this steps:
 
-1. Change [`.env`](./env) file accordingly to your environment.
+1. Create a `.env` file using [`.env.example`](./env.example) accordingly to
+   your environment.
 
-   > Ussually, you just need to change the `TARGET_STAGE` variable _(dev, qa,
+   > Commonly, you just need to change the `TARGET_STAGE` variable _(dev, qa,
    > prod)_.
 
 1. Add all microservices projects that you need to launch to this folder.
