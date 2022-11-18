@@ -126,6 +126,20 @@ services:
       - br-ms-sd00054-oi00003-ambassadorremittances
     volumes:
       - ./br-ms-sd00103-oi00005-remittanceadmitquote/src:/app/src
+  br-ms-sd00205-oi00008-getremittancecountries:
+    build:
+      context: ./br-ms-sd00205-oi00008-getremittancecountries
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8087
+    ports:
+      - 8087:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00008-getremittancecountries/src:/app/src
 
 volumes:
   redis-data:
