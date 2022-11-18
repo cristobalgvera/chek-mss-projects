@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# If no flags are specified, then show usage script
+if [[ ${#} -eq 0 ]]; then
+  echo "No arguments specified"
+  echo
+  sh ./scripts/usage.sh
+fi
+
 optstring=":dghn"
 
 # Check if the user has passed any arguments
@@ -17,13 +24,6 @@ do
       ;;
   esac 
 done
-
-# If no flags are specified, then show usage script
-if [[ ${#} -eq 0 ]]; then
-  echo "No arguments specified"
-  echo
-  sh ./scripts/usage.sh
-fi
 
 if [[ -n $add_git_repositories ]]; then
   echo ">> Adding Git repositories"
