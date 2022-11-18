@@ -25,15 +25,21 @@ In order to use this project, you should follow this steps:
    > All files in this folder will be ignored, so you can just execute
    > `git clone YOUR_REPO` inside this folder and all will work well
    > without any\* further action over your actual project.
+   >
+   > You can run `sh setup.sh -g` in order to do it automatically.
+
+1. :exclamation: **REMEMBER**:
+
+   - Checkout to the proper `development` of `feature` branch.
+
+   - Setup your required files like a `.env` or any other specific one to the
+     project itself.
 
 1. Put the [`.dockerignore`](./.dockerignore) and [`Dockerfile`](./Dockerfile)
    in the **root folder of every project** that will be launch
    in [`compose.yml`](./compose.yml).
 
-   > You can run `sh setup.sh` in order to do it automatically.
-
-1. Remember to setup your project required files like a `.env` or any other
-   specific one.
+   > You can run `sh setup.sh -d` in order to do it automatically.
 
 1. _(Optional)_ If your will develop new features, is mandatory install Node
    dependencies locally.
@@ -41,6 +47,38 @@ In order to use this project, you should follow this steps:
 ---
 
 **\*** _You will need to modify only the Docker related files of your project._
+
+## Setup script
+
+It is provided a useful [`setup.sh`](./setup.sh) script that will help you to
+add all repositories right from Bitbucket and then add the required Docker files
+to all of them.
+
+Script works as follows:
+
+```bash
+# Get all used repositories
+sh setup.sh -g
+
+# Add all required Docker files to repositories
+sh setup.sh -d
+
+# Show script help
+sh setup.sh -h
+```
+
+> **DISCLAIMER**: This process has a drawback due the usage of non-standard\* Git
+> branches names. In order to properly setup the repositories, you will need to run
+> `sh setup.sh -g`, then go into each created Git folder and checkout the proper
+> branch.
+>
+> After that, you can safely run `sh setup.sh -d` and then add the required
+> `.env` files.
+
+---
+
+**\*** _Currently, used branch can be `development` or some random `feature` branch,
+there is no way to know it programatically._
 
 ## Useful commands
 
