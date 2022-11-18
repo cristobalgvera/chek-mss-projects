@@ -92,25 +92,28 @@ there is no way to know it programatically._
 
 ```bash
 # Launch services creating images
-docker compose up -d
+docker compose up -d <service_name>
 
 # Launch services rebuilding images (i.e., when you change the `TARGET_STAGE`)
-docker compose up -d --build
+docker compose up -d --build <service_name>
 
 # Delete composed services
 docker compose down
 
 # Stop composed services
-docker compose stop
+docker compose stop <service_name>
+
+# Remove stopped composed services
+docker compose rm <service_name>
 
 # Start stoped composed services
-docker compose start
+docker compose start <service_name>
+
+# Restart composed services
+docker compose restart <service_name>
 
 # View logs of all services
-docker compose logs -f
-
-# View logs of single service
-docker compose logs -f <SERVICE_NAME>
+docker compose logs -f <service_name>
 
 # View all your launched services (running or not running)
 docker ps -a
@@ -121,3 +124,7 @@ to the Docker logs. When you detached it, containers will be stoped._
 
 **\*** _The `-f` flag in `logs` means `follow`. It will lock your terminal to the
 Docker logs. When you detached it, containers will continue working._
+
+**\*** _The `<service_name>` means that you can use the command for a single service
+instead of the entire stack. The service name will be the one located in the
+[`compose.yml`](./compose.yml) file._
