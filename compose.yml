@@ -15,7 +15,6 @@ services:
     build:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
-    image: br-ms-sd00054-oi00003-ambassadorremittances:v1
     expose:
       - 3000
     ports:
