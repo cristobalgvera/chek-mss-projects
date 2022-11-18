@@ -13,7 +13,7 @@ function get_repositories {
   )
 
   for repository in "${repositories[@]}"; do
-    printf "\nCloning repository '%s'\n" "$repository"
+    printf "Cloning repository '%s'\n\n" "$repository"
     /bin/bash -c "git clone git@bitbucket.org:banco_ripley/$repository.git"
   done
 }

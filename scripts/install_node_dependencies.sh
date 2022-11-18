@@ -8,18 +8,16 @@ function install_node_dependencies {
   printf "⌛This could take a while...\n\n"
 
   for directory in $directories; do
-    if [[ "$directory" = scripts/ ]]; then
-      continue
-    fi
-
-    printf ">> Installing Node dependencies in './%s'\n" "$directory"
+    case $directory in
+      scripts/|shared/) continue ;;
+      *) printf ">> Installing Node dependencies in './%s'\n" "$directory" ;;
+    esac
 
     cd "$directory" || exit 1
-
-    /bin/bash -c "npm install --silent"
+      /bin/bash -c "npm install --silent"
+    cd .. || exit 1
 
     printf "☑ Done\n\n"
-    cd .. || exit 1
   done
 }
 

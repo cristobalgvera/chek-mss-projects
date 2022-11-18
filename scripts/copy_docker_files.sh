@@ -10,14 +10,13 @@ function copy_docker_files {
   )
 
   for directory in $directories; do
-    if [[ "$directory" = scripts/ ]]; then
-      continue
-    fi
-
-    printf "Copying files to './%s'\n" "$directory"
+    case $directory in
+      scripts/|shared/) continue ;;
+      *) printf "Copying files to './%s'\n" "$directory" ;;
+    esac
 
     for file in "${files[@]}"; do
-      cp "$file" ./"$directory"
+      cp ./shared/"$file" ./"$directory"
     done
   done
 }

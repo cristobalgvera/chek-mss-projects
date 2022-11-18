@@ -35,7 +35,7 @@ In order to use this project, you should follow this steps:
    - Setup your required files like a `.env` or any other specific one to the
      project itself.
 
-1. Put the [`.dockerignore`](./.dockerignore) and [`Dockerfile`](./Dockerfile)
+1. Put the [`.dockerignore`](./shared/.dockerignore) and [`Dockerfile`](./shared/Dockerfile)
    in the **root folder of every project** that will be launch
    in [`compose.yml`](./compose.yml).
 

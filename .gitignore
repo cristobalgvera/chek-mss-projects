@@ -1,7 +1,9 @@
 # Ignore all
 *
 
-# But...
+# Except the following...
+
+## Files
 !.gitignore
 !.env
 !compose*.yml
@@ -9,5 +11,9 @@
 !.dockerignore
 !README.md
 !setup.sh
+
+## Folders
 !scripts
 !scripts/*
+!shared
+!shared/*
