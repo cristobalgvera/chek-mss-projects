@@ -16,14 +16,119 @@ services:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
     expose:
-      - 3000
+      - 8080
     ports:
-      - 3000:8080
+      - 8080:8080
     depends_on:
       - redis
     volumes:
       - ./br-ms-sd00054-oi00003-ambassadorremittances/src:/app/src
       - ./br-ms-sd00054-oi00003-ambassadorremittances/node_modules:/app/node_modules
+  br-ms-sd00205-oi00007-getremittancepayers:
+    build:
+      context: ./br-ms-sd00205-oi00007-getremittancepayers
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8081
+    ports:
+      - 8081:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00007-getremittancepayers/src:/app/src
+      - ./br-ms-sd00205-oi00007-getremittancepayers/node_modules:/app/node_modules
+  br-ms-sd00205-oi00006-getremittancebanks:
+    build:
+      context: ./br-ms-sd00205-oi00006-getremittancebanks
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8082
+    ports:
+      - 8082:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00006-getremittancebanks/src:/app/src
+      - ./br-ms-sd00205-oi00006-getremittancebanks/node_modules:/app/node_modules
+  br-ms-sd00102-oi00016-webhookremittances:
+    build:
+      context: ./br-ms-sd00102-oi00016-webhookremittances
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8083
+    ports:
+      - 8083:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00102-oi00016-webhookremittances/src:/app/src
+      - ./br-ms-sd00102-oi00016-webhookremittances/node_modules:/app/node_modules
+  br-ms-sd00102-oi00015-remittiancepayment:
+    build:
+      context: ./br-ms-sd00102-oi00015-remittiancepayment
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8084
+    ports:
+      - 8084:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00102-oi00015-remittiancepayment/src:/app/src
+      - ./br-ms-sd00102-oi00015-remittiancepayment/node_modules:/app/node_modules
+  br-ms-sd00205-oi00009-getremittanceflags:
+    build:
+      context: ./br-ms-sd00205-oi00009-getremittanceflags
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8085
+    ports:
+      - 8085:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00009-getremittanceflags/src:/app/src
+      - ./br-ms-sd00205-oi00009-getremittanceflags/node_modules:/app/node_modules
+  br-ms-sd00103-io00004-createremittancequote:
+    build:
+      context: ./br-ms-sd00103-io00004-createremittancequote
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8086
+    ports:
+      - 8086:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00103-io00004-createremittancequote/src:/app/src
+      - ./br-ms-sd00103-io00004-createremittancequote/node_modules:/app/node_modules
+  br-ms-sd00103-oi00005-remittanceadmitquote:
+    build:
+      context: ./br-ms-sd00103-oi00005-remittanceadmitquote
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    expose:
+      - 8087
+    ports:
+      - 8087:8080
+    depends_on:
+      - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00103-oi00005-remittanceadmitquote/src:/app/src
+      - ./br-ms-sd00103-oi00005-remittanceadmitquote/node_modules:/app/node_modules
 
 volumes:
   redis-data:
