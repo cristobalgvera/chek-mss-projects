@@ -133,9 +133,9 @@ services:
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     expose:
-      - 8087
+      - 8088
     ports:
-      - 8087:8080
+      - 8088:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
     volumes:
