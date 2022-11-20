@@ -2,7 +2,7 @@
   "name": "${localWorkspaceFolderBasename}",
   "dockerComposeFile": ["../../compose.yml", "compose.devcontainer.yml"],
   "service": "${localWorkspaceFolderBasename}",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/app",
   "extensions": [
     "dbaeumer.vscode-eslint",
     "AbhijoyBasak.nestjs-files",

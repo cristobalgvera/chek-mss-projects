@@ -4,5 +4,3 @@ services:
     build:
       dockerfile: .devcontainer/Dockerfile
       target: dev
-    volumes:
-      - .:/workspaces:cached

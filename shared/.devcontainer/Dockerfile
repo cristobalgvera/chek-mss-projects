@@ -1,5 +1,5 @@
 # Create a new Node 14 image
-FROM node:14-alpine as base
+FROM node:14-alpine
 # Set the working directory
 WORKDIR /app
 # Copy the package.json file
@@ -8,6 +8,5 @@ COPY package*.json ./
 RUN npm install --silent
 # Copy all files
 COPY . .
-
-FROM base as dev
+# Serve the app
 CMD [ "npm", "run", "start:dev" ]
