@@ -1,0 +1,8 @@
+---
+services:
+  ${SERVICE_NAME}:
+    build:
+      dockerfile: .devcontainer/Dockerfile
+      target: dev
+    volumes:
+      - .:/workspaces:cached
