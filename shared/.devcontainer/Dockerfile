@@ -1,5 +1,5 @@
 # Create a new Node 14 image
-FROM node:14-alpine
+FROM node:14-alpine as dev
 # Set the working directory
 WORKDIR /app
 # Copy the package.json file
