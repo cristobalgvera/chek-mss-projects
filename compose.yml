@@ -20,8 +20,6 @@ services:
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
-    expose:
-      - 8080
     ports:
       - 8080:8080
     depends_on:
@@ -34,8 +32,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8081
     ports:
       - 8081:8080
     depends_on:
@@ -48,8 +44,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8082
     ports:
       - 8082:8080
     depends_on:
@@ -62,8 +56,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8083
     ports:
       - 8083:8080
     depends_on:
@@ -76,8 +68,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8084
     ports:
       - 8084:8080
     depends_on:
@@ -90,8 +80,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8085
     ports:
       - 8085:8080
     depends_on:
@@ -104,8 +92,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8086
     ports:
       - 8086:8080
     depends_on:
@@ -118,8 +104,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8087
     ports:
       - 8087:8080
     depends_on:
@@ -132,8 +116,6 @@ services:
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    expose:
-      - 8088
     ports:
       - 8088:8080
     depends_on:
