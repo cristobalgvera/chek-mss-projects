@@ -15,5 +15,5 @@
   "shutdownAction": "none",
 
   // Run only this service and the ones that depends on
-  "runServices": ["${localWorkspaceFolderBasename}"],
+  "runServices": ["${localWorkspaceFolderBasename}"]
 }
