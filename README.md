@@ -92,6 +92,22 @@ sh setup.sh -h
 **\*** _Currently, used branch can be `development` or some random `feature` branch,
 there is no way to know it programatically._
 
+## Dev Containers
+
+When copying the Docker related files using the [setup script](#setup-script), a
+`.devcontainer` folder is created inside of each microservice. This folder create
+the specifications defined in [devcontainers](https://containers.dev/), allowing
+you to launch instances of apps like VSCode inside the container as they were in
+your machine. This is handy for development purposes like **debugging**, easily setting
+the **environment setup**, etc.
+
+To get this using VSCode, you must install the
+[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+extension.
+
+Think this as a way to properly develop any project without install anything but
+Docker and VSCode in your machine.
+
 ## Useful commands
 
 ```bash
