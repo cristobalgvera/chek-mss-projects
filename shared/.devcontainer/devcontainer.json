@@ -3,17 +3,21 @@
   "dockerComposeFile": ["../../compose.yml", "compose.devcontainer.yml"],
   "service": "${localWorkspaceFolderBasename}",
   "workspaceFolder": "/app",
-  "extensions": [
-    "dbaeumer.vscode-eslint",
-    "AbhijoyBasak.nestjs-files",
-    "christian-kohler.path-intellisense",
-    "esbenp.prettier-vscode",
-    "usernamehw.errorlens"
-  ],
 
   // Do not down the services when the devcontainer is closed
   "shutdownAction": "none",
 
   // Run only this service and the ones that depends on
-  "runServices": ["${localWorkspaceFolderBasename}"]
+  "runServices": ["${localWorkspaceFolderBasename}"],
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "AbhijoyBasak.nestjs-files",
+        "esbenp.prettier-vscode",
+        "usernamehw.errorlens"
+      ]
+    }
+  }
 }
