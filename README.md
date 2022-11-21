@@ -108,6 +108,16 @@ extension.
 Think this as a way to properly develop any project without install anything but
 Docker and VSCode in your machine.
 
+### Debug
+
+In order to debug your running container, you simply must to enter to the Dev Container
+using VSCode, then go to the `Run and Debug` section and run the `Attach to Server`
+predefined configuration.
+
+Also, if you want to debug in your local machine, you simply need to run the
+`Debug Server` configuration. This will launch the project and open an attachable
+port that will be used by the attach process.
+
 ## Useful commands
 
 ```bash

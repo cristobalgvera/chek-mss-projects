@@ -9,4 +9,4 @@ RUN npm install --silent
 # Copy all files
 COPY . .
 # Serve the app
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "npm", "run", "start:debug" ]
