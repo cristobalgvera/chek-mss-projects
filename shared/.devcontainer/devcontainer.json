@@ -10,6 +10,10 @@
   // Run only this service and the ones that depends on
   "runServices": ["${localWorkspaceFolderBasename}"],
 
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
   "customizations": {
     "vscode": {
       "extensions": [
