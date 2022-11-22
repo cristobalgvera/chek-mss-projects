@@ -8,6 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the dependencies
+RUN npm install -g @nestjs/cli
 RUN npm install --silent
 
 # Copy all files
