@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM base as dev
 COPY . .
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "npm", "run", "start:debug" ]
 
 FROM base as builder
 # Copy the package.json file
