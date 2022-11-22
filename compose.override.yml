@@ -8,3 +8,7 @@ services:
     volumes:
       - ./br-ms-sd00103-oi00007-createpaymentcorewallet/src:/app/src
       - ./br-ms-sd00103-oi00007-createpaymentcorewallet/node_modules:/app/node_modules
+  charges-service:
+    volumes:
+      - ./charges-service/src:/app/src
+      - ./charges-service/node_modules:/app/node_modules
