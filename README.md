@@ -7,11 +7,11 @@ This project helps to easily launch stages for Remittance's microservices.
 Use a single command to has a ready to develop, check, and deploy environment.
 
 ```bash
-# Launch containers in Dev context
-docker compose -f compose.yml -f compose.dev.yml up -d
-
-# Launc containers in QA or Production mode
+# Launch containers
 docker compose up -d
+
+# Launch containers using local node_modules
+docker compose -f compose.yml -f compose.local.yml up -d
 ```
 
 ## How to use it
@@ -27,8 +27,8 @@ In order to use this project, you should follow this steps:
 1. Create a `.env` file using [`.env.example`](./env.example) accordingly to
    your environment.
 
-   > Commonly, you just need to change the `TARGET_STAGE` variable _(dev, qa,
-   > prod)_.
+   > Commonly, you just need to change the `TARGET_STAGE` variable _(local,
+   > dev, qa, prod)_.
 
 1. Add all microservices projects that you need to launch to this folder.
 
@@ -57,8 +57,8 @@ In order to use this project, you should follow this steps:
    > You can run `sh setup.sh -n` in order to do it automatically.
 
 1. :rocket: Launch your projects with
-   `docker compose -f compose.yml -f compose.dev.yml up -d`
-   (`dev`) or `docker compose up -d` (`prod` or `qa`)
+   `docker compose up -d` (`dev`, `prod` or `qa`) or
+   `docker compose -f compose.yml -f compose.local.yml up -d` (`local`)
    (add `--build`, in case you need it)
 
 ---
@@ -128,14 +128,14 @@ port that will be used by the attach process.
 ## Useful commands
 
 ```bash
-# Launch services creating images in Dev context
-docker compose -f compose.yml -f compose.dev.yml up -d <service_name>
+# Launch services creating images
+docker compose up -d <service_name>
 
-# Launch services rebuilding images in Dev context (i.e., when you change the `TARGET_STAGE`)
-docker compose -f compose.yml -f compose.dev.yml up -d --build <service_name>
+# Launch services rebuilding images (i.e., when you change the `TARGET_STAGE`)
+docker compose up -d --build <service_name>
 
-# Launch services in QA or Production context
-docker compose up -d [--build] <service_name>
+# Launch services in Local context
+docker compose -f compose.yml -f compose.local.yml up -d [--build] <service_name>
 
 # Delete composed services
 docker compose down
