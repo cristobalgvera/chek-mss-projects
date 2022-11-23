@@ -8,15 +8,21 @@ Use a single command to has a ready to develop, check, and deploy environment.
 
 ```bash
 # Launch containers in Dev context
-docker compose up -d
+docker compose -f compose.yml -f compose.dev.yml up -d
 
 # Launc containers in QA or Production mode
-docker compose -f compose.yml -d
+docker compose up -d
 ```
 
 ## How to use it
 
 In order to use this project, you should follow this steps:
+
+1. Select the right branch based on your project. It can be one of the following:
+
+   - Remittance: `project/remittance`.
+
+   - Carga Bip: `project/carga-bip`.
 
 1. Create a `.env` file using [`.env.example`](./env.example) accordingly to
    your environment.
@@ -50,9 +56,10 @@ In order to use this project, you should follow this steps:
 
    > You can run `sh setup.sh -n` in order to do it automatically.
 
-1. :rocket: Launch your projects with `docker compose up -d` (`dev`) or
-   `docker compose -f compose.yml -d` (`prod` or `qa`) (add `--build`, in case you
-   need it)
+1. :rocket: Launch your projects with
+   `docker compose -f compose.yml -f compose.dev.yml up -d`
+   (`dev`) or `docker compose up -d` (`prod` or `qa`)
+   (add `--build`, in case you need it)
 
 ---
 
@@ -122,13 +129,13 @@ port that will be used by the attach process.
 
 ```bash
 # Launch services creating images in Dev context
-docker compose up -d <service_name>
+docker compose -f compose.yml -f compose.dev.yml up -d <service_name>
 
 # Launch services rebuilding images in Dev context (i.e., when you change the `TARGET_STAGE`)
-docker compose up -d --build <service_name>
+docker compose -f compose.yml -f compose.dev.yml up -d --build <service_name>
 
 # Launch services in QA or Production context
-docker compose -f compose.yml up -d [--build] <service_name>
+docker compose up -d [--build] <service_name>
 
 # Delete composed services
 docker compose down
