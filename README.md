@@ -1,6 +1,6 @@
 # Docker ComposeR
 
-This project helps to easily launch stages for Remittance's microservices.
+This project helps to easily launch stages for microservices projects.
 
 ## TL;DR
 
