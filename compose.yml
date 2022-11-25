@@ -8,12 +8,12 @@ services:
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
-    ports:
-      - 6379:6379
+    # ports:
+    #   - 6379:6379
     volumes:
       - redis-data:/data
   br-ms-sd00054-oi00003-ambassadorremittances:
-    hostname: ${AMBASSADOR_HOSTNAME}
+    hostname: ${AMBASSADOR_REMITTANCES_HOSTNAME}
     build:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
@@ -21,92 +21,65 @@ services:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
     ports:
-      - 8080:8080
+      - 4080:8080
     depends_on:
       - redis
-  br-ms-sd00205-oi00007-getremittancepayers:
+    volumes:
+      - ./br-ms-sd00054-oi00003-ambassadorremittances/src:/app/src
+  br-ms-sd00054-oi00005-ambassadorcorewallet:
+    hostname: ${AMBASSADOR_CORE_WALLET_HOSTNAME}
     build:
-      context: ./br-ms-sd00205-oi00007-getremittancepayers
+      context: ./br-ms-sd00054-oi00005-ambassadorcorewallet
       target: ${TARGET_STAGE}
     environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+      REDIS_HOST: ${REDIS_HOSTNAME}
+      REDIS_AUTH: ${REDIS_AUTH}
     ports:
-      - 8081:8080
+      - 4081:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00205-oi00006-getremittancebanks:
+      - redis
+    volumes:
+      - ./br-ms-sd00054-oi00005-ambassadorcorewallet/src:/app/src
+  br-ms-sd00103-oi00008-capturemoneycorewallet:
+    hostname: ${CAPTURE_MONEY_CORE_WALLET_HOSTNAME}
     build:
-      context: ./br-ms-sd00205-oi00006-getremittancebanks
+      context: ./br-ms-sd00103-oi00008-capturemoneycorewallet
       target: ${TARGET_STAGE}
     environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+      AMBASSADOR_URL: ${AMBASSADOR_CORE_WALLET_URL}
     ports:
-      - 8082:8080
+      - 4082:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00102-oi00016-webhookremittances:
-    build:
-      context: ./br-ms-sd00102-oi00016-webhookremittances
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8083:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
+      - br-ms-sd00054-oi00005-ambassadorcorewallet
+    volumes:
+      - ./br-ms-sd00103-oi00008-capturemoneycorewallet/src:/app/src
   br-ms-sd00102-oi00015-remittiancepayment:
+    hostname: ${REMITTIANCE_PAYMENT_HOSTNAME}
     build:
       context: ./br-ms-sd00102-oi00015-remittiancepayment
       target: ${TARGET_STAGE}
     environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES_URL}
     ports:
-      - 8084:8080
+      - 4083:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00205-oi00009-getremittanceflags:
+    volumes:
+      - ./br-ms-sd00102-oi00015-remittiancepayment/src:/app/src
+  br-ms-sd00103-oi00012-corewalletsaga:
     build:
-      context: ./br-ms-sd00205-oi00009-getremittanceflags
+      context: ./br-ms-sd00103-oi00012-corewalletsaga
       target: ${TARGET_STAGE}
     environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+      CAPTURE_MONEY_CORE_WALLET_URL: ${CAPTURE_MONEY_CORE_WALLET_URL}
+      REMITTIANCE_PAYMENT_URL: ${REMITTIANCE_PAYMENT_URL}
     ports:
-      - 8085:8080
+      - 4084:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00103-io00004-createremittancequote:
-    build:
-      context: ./br-ms-sd00103-io00004-createremittancequote
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8086:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00103-oi00005-remittanceadmitquote:
-    build:
-      context: ./br-ms-sd00103-oi00005-remittanceadmitquote
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8087:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00205-oi00008-getremittancecountries:
-    build:
-      context: ./br-ms-sd00205-oi00008-getremittancecountries
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8088:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
+      - br-ms-sd00102-oi00015-remittiancepayment
+      - br-ms-sd00103-oi00008-capturemoneycorewallet
+    volumes:
+      - ./br-ms-sd00103-oi00012-corewalletsaga/src:/app/src
 
 volumes:
   redis-data:
-
-networks:
-  default:
