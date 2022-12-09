@@ -24,6 +24,8 @@ services:
       - 8080:8080
     depends_on:
       - redis
+    volumes:
+      - ./br-ms-sd00054-oi00003-ambassadorremittances/src:/app/src
   br-ms-sd00205-oi00007-getremittancepayers:
     build:
       context: ./br-ms-sd00205-oi00007-getremittancepayers
@@ -34,6 +36,8 @@ services:
       - 8081:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00007-getremittancepayers/src:/app/src
   br-ms-sd00205-oi00006-getremittancebanks:
     build:
       context: ./br-ms-sd00205-oi00006-getremittancebanks
@@ -44,6 +48,8 @@ services:
       - 8082:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00006-getremittancebanks/src:/app/src
   br-ms-sd00102-oi00016-webhookremittances:
     build:
       context: ./br-ms-sd00102-oi00016-webhookremittances
@@ -54,6 +60,8 @@ services:
       - 8083:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00102-oi00016-webhookremittances/src:/app/src
   br-ms-sd00102-oi00015-remittiancepayment:
     build:
       context: ./br-ms-sd00102-oi00015-remittiancepayment
@@ -64,6 +72,8 @@ services:
       - 8084:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00102-oi00015-remittiancepayment/src:/app/src
   br-ms-sd00205-oi00009-getremittanceflags:
     build:
       context: ./br-ms-sd00205-oi00009-getremittanceflags
@@ -74,6 +84,8 @@ services:
       - 8085:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00009-getremittanceflags/src:/app/src
   br-ms-sd00103-io00004-createremittancequote:
     build:
       context: ./br-ms-sd00103-io00004-createremittancequote
@@ -84,6 +96,8 @@ services:
       - 8086:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00103-io00004-createremittancequote/src:/app/src
   br-ms-sd00103-oi00005-remittanceadmitquote:
     build:
       context: ./br-ms-sd00103-oi00005-remittanceadmitquote
@@ -94,6 +108,8 @@ services:
       - 8087:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00103-oi00005-remittanceadmitquote/src:/app/src
   br-ms-sd00205-oi00008-getremittancecountries:
     build:
       context: ./br-ms-sd00205-oi00008-getremittancecountries
@@ -104,6 +120,8 @@ services:
       - 8088:8080
     depends_on:
       - br-ms-sd00054-oi00003-ambassadorremittances
+    volumes:
+      - ./br-ms-sd00205-oi00008-getremittancecountries/src:/app/src
 
 volumes:
   redis-data:

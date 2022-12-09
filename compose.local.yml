@@ -2,37 +2,28 @@
 services:
   br-ms-sd00054-oi00003-ambassadorremittances:
     volumes:
-      - ./br-ms-sd00054-oi00003-ambassadorremittances/src:/app/src
       - ./br-ms-sd00054-oi00003-ambassadorremittances/node_modules:/app/node_modules
   br-ms-sd00205-oi00007-getremittancepayers:
     volumes:
-      - ./br-ms-sd00205-oi00007-getremittancepayers/src:/app/src
       - ./br-ms-sd00205-oi00007-getremittancepayers/node_modules:/app/node_modules
   br-ms-sd00205-oi00006-getremittancebanks:
     volumes:
-      - ./br-ms-sd00205-oi00006-getremittancebanks/src:/app/src
       - ./br-ms-sd00205-oi00006-getremittancebanks/node_modules:/app/node_modules
   br-ms-sd00102-oi00016-webhookremittances:
     volumes:
-      - ./br-ms-sd00102-oi00016-webhookremittances/src:/app/src
       - ./br-ms-sd00102-oi00016-webhookremittances/node_modules:/app/node_modules
   br-ms-sd00102-oi00015-remittiancepayment:
     volumes:
-      - ./br-ms-sd00102-oi00015-remittiancepayment/src:/app/src
       - ./br-ms-sd00102-oi00015-remittiancepayment/node_modules:/app/node_modules
   br-ms-sd00205-oi00009-getremittanceflags:
     volumes:
-      - ./br-ms-sd00205-oi00009-getremittanceflags/src:/app/src
       - ./br-ms-sd00205-oi00009-getremittanceflags/node_modules:/app/node_modules
   br-ms-sd00103-io00004-createremittancequote:
     volumes:
-      - ./br-ms-sd00103-io00004-createremittancequote/src:/app/src
       - ./br-ms-sd00103-io00004-createremittancequote/node_modules:/app/node_modules
   br-ms-sd00103-oi00005-remittanceadmitquote:
     volumes:
-      - ./br-ms-sd00103-oi00005-remittanceadmitquote/src:/app/src
       - ./br-ms-sd00103-oi00005-remittanceadmitquote/node_modules:/app/node_modules
   br-ms-sd00205-oi00008-getremittancecountries:
     volumes:
-      - ./br-ms-sd00205-oi00008-getremittancecountries/src:/app/src
       - ./br-ms-sd00205-oi00008-getremittancecountries/node_modules:/app/node_modules
