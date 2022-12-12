@@ -15,3 +15,6 @@ services:
   br-ms-sd00103-oi00012-corewalletsaga:
     volumes:
       - ./br-ms-sd00103-oi00012-corewalletsaga/node_modules:/app/node_modules
+  br-ms-sd00103-oi00011-reversetechniquecorewallet:
+    volumes:
+      - ./br-ms-sd00103-oi00011-reversetechniquecorewallet/src:/app/src
