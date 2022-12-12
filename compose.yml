@@ -4,109 +4,69 @@ services:
     hostname: ${REDIS_HOSTNAME}
     image: redis:7.0.5-alpine
     restart: always
-    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_AUTH
+    command: redis-server --save 20 1 --loglevel warning
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
-      REDIS_AUTH: ${REDIS_AUTH}
-    ports:
-      - 6379:6379
+    # ports:
+    #   - 6379:6379
     volumes:
       - redis-data:/data
-  br-ms-sd00054-oi00003-ambassadorremittances:
-    hostname: ${AMBASSADOR_HOSTNAME}
+  br-ms-sd00270-oi00019-smsprovider:
     build:
-      context: ./br-ms-sd00054-oi00003-ambassadorremittances
+      context: ./br-ms-sd00270-oi00019-smsprovider
       target: ${TARGET_STAGE}
-    environment:
-      REDIS_HOST: ${REDIS_HOSTNAME}
-      REDIS_AUTH: ${REDIS_AUTH}
+    # TODO: Add environment variables
     ports:
-      - 8080:8080
+      - 5080:8080
+    volumes:
+      - ./br-ms-sd00270-oi00019-smsprovider/src:/app/src
+  br-ms-sd00270-oi00017-createotp:
+    build:
+      context: ./br-ms-sd00270-oi00017-createotp
+      target: ${TARGET_STAGE}
+    # TODO: Add environment variables
+    ports:
+      - 5081:8080
     depends_on:
       - redis
-  br-ms-sd00205-oi00007-getremittancepayers:
+      - br-ms-sd00270-oi00019-smsprovider
+    volumes:
+      - ./br-ms-sd00270-oi00017-createotp/src:/app/src
+  br-ms-sd00270-oi00018-validateotp:
     build:
-      context: ./br-ms-sd00205-oi00007-getremittancepayers
+      context: ./br-ms-sd00270-oi00018-validateotp
       target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
-      - 8081:8080
+      - 5082:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00205-oi00006-getremittancebanks:
+      - redis
+    volumes:
+      - ./br-ms-sd00270-oi00018-validateotp/src:/app/src
+  br-ms-sd00270-oi00020-updateotp:
     build:
-      context: ./br-ms-sd00205-oi00006-getremittancebanks
+      context: ./br-ms-sd00270-oi00020-updateotp
       target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    # TODO: Add environment variables
     ports:
-      - 8082:8080
+      - 5083:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00102-oi00016-webhookremittances:
+      - redis
+      - br-ms-sd00270-oi00019-smsprovider
+    volumes:
+      - ./br-ms-sd00270-oi00020-updateotp/src:/app/src
+  br-ms-sd00270-oi00016-otphandler:
     build:
-      context: ./br-ms-sd00102-oi00016-webhookremittances
+      context: ./br-ms-sd00270-oi00016-otphandler
       target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
+    # TODO: Add environment variables
     ports:
-      - 8083:8080
+      - 5084:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00102-oi00015-remittiancepayment:
-    build:
-      context: ./br-ms-sd00102-oi00015-remittiancepayment
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8084:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00205-oi00009-getremittanceflags:
-    build:
-      context: ./br-ms-sd00205-oi00009-getremittanceflags
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8085:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00103-io00004-createremittancequote:
-    build:
-      context: ./br-ms-sd00103-io00004-createremittancequote
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8086:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00103-oi00005-remittanceadmitquote:
-    build:
-      context: ./br-ms-sd00103-oi00005-remittanceadmitquote
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8087:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
-  br-ms-sd00205-oi00008-getremittancecountries:
-    build:
-      context: ./br-ms-sd00205-oi00008-getremittancecountries
-      target: ${TARGET_STAGE}
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
-    ports:
-      - 8088:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
+      - br-ms-sd00270-oi00017-createotp
+      - br-ms-sd00270-oi00018-validateotp
+      - br-ms-sd00270-oi00020-updateotp
+    volumes:
+      - ./br-ms-sd00270-oi00016-otphandler/src:/app/src
 
 volumes:
   redis-data:
-
-networks:
-  default:
