@@ -8,6 +8,8 @@ function get_repositories {
     br-ms-sd00054-oi00005-ambassadorcorewallet
     br-ms-sd00054-oi00003-ambassadorremittances
     br-ms-sd00103-oi00011-reversetechniquecorewallet
+    # TODO: Add service name when BIAN is ready
+    # get-payment
   )
 
   for repository in "${repositories[@]}"; do
