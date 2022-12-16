@@ -38,9 +38,9 @@ services:
       - br-ms-sd00054-oi00005-ambassadorcorewallet
     volumes:
       - ./br-ms-sd00103-oi00007-createpaymentcorewallet/src:/app/src
-  br-ms-sd00103-oi00009-getinformationcharge:
+  br-ms-sd00103-oi00013-getinformationcharge:
     build:
-      context: ./br-ms-sd00103-oi00009-getinformationcharge
+      context: ./br-ms-sd00103-oi00013-getinformationcharge
       target: ${TARGET_STAGE}
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_URL}
@@ -49,7 +49,7 @@ services:
     depends_on:
       - br-ms-sd00054-oi00005-ambassadorcorewallet
     volumes:
-      - ./br-ms-sd00103-oi00009-getinformationcharge/src:/app/src
+      - ./br-ms-sd00103-oi00013-getinformationcharge/src:/app/src
 
 volumes:
   redis-data:
