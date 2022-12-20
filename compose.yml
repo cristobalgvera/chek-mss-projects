@@ -109,6 +109,18 @@ services:
       - br-ms-sd00054-oi00005-ambassadorcorewallet
     volumes:
       - ./br-ms-sd00103-io00013-getinformationcharge/src:/app/src
+  br-ms-sd00103-oi00007-createpaymentcorewallet:
+    build:
+      context: ./br-ms-sd00103-oi00007-createpaymentcorewallet
+      target: ${TARGET_STAGE}
+    environment:
+      AMBASSADOR_URL: ${AMBASSADOR_CORE_WALLET_URL}
+    ports:
+      - 4087:8080
+    depends_on:
+      - br-ms-sd00054-oi00005-ambassadorcorewallet
+    volumes:
+      - ./br-ms-sd00103-oi00007-createpaymentcorewallet/src:/app/src
 
 volumes:
   redis-data:

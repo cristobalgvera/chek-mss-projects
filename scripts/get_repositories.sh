@@ -9,6 +9,7 @@ function get_repositories {
     br-ms-sd00054-oi00003-ambassadorremittances
     br-ms-sd00103-oi00011-reversetechniquecorewallet
     br-ms-sd00103-io00013-getinformationcharge
+    br-ms-sd00103-oi00007-createpaymentcorewallet
   )
 
   for repository in "${repositories[@]}"; do
