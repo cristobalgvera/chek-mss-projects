@@ -4,9 +4,10 @@ services:
     hostname: ${REDIS_HOSTNAME}
     image: redis:7.0.5-alpine
     restart: always
-    command: redis-server --save 20 1 --loglevel warning
+    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_AUTH
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
+      REDIS_AUTH: ${REDIS_AUTH}
     # ports:
     #   - 6379:6379
     volumes:
@@ -26,6 +27,7 @@ services:
       target: ${TARGET_STAGE}
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
+      REDISAUTH: ${REDIS_AUTH}
     ports:
       - 5081:8080
     depends_on:
@@ -39,6 +41,7 @@ services:
       target: ${TARGET_STAGE}
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
+      REDISAUTH: ${REDIS_AUTH}
     ports:
       - 5082:8080
     depends_on:
@@ -51,6 +54,7 @@ services:
       target: ${TARGET_STAGE}
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
+      REDISAUTH: ${REDIS_AUTH}
     ports:
       - 5083:8080
     depends_on:
