@@ -25,7 +25,7 @@ services:
       context: ./br-ms-sd00270-oi00017-createotp
       target: ${TARGET_STAGE}
     environment:
-      REDIS_HOST: ${REDIS_HOSTNAME}
+      REDISHOST: ${REDIS_HOSTNAME}
     ports:
       - 5081:8080
     depends_on:
@@ -38,7 +38,7 @@ services:
       context: ./br-ms-sd00270-oi00018-validateotp
       target: ${TARGET_STAGE}
     environment:
-      REDIS_HOST: ${REDIS_HOSTNAME}
+      REDISHOST: ${REDIS_HOSTNAME}
     ports:
       - 5082:8080
     depends_on:
@@ -50,7 +50,7 @@ services:
       context: ./br-ms-sd00270-oi00020-updateotp
       target: ${TARGET_STAGE}
     environment:
-      REDIS_HOST: ${REDIS_HOSTNAME}
+      REDISHOST: ${REDIS_HOSTNAME}
     ports:
       - 5083:8080
     depends_on:
