@@ -18,8 +18,8 @@ services:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
     environment:
-      REDIS_HOST: ${REDIS_HOSTNAME}
-      REDIS_AUTH: ${REDIS_AUTH}
+      REDISHOST: ${REDIS_HOSTNAME}
+      REDISAUTH: ${REDIS_AUTH}
     ports:
       - 8080:8080
     depends_on:
