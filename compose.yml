@@ -3,19 +3,17 @@ services:
   redis:
     hostname: ${REDIS_HOSTNAME}
     image: redis:7.0.5-alpine
-    restart: always
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_AUTH
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
-    # ports:
-    #   - 6379:6379
     volumes:
       - redis-data:/data
   br-ms-sd00270-oi00019-smsprovider:
     build:
       context: ./br-ms-sd00270-oi00019-smsprovider
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     # TODO: Add environment variables
     ports:
       - 5080:8080
@@ -25,6 +23,7 @@ services:
     build:
       context: ./br-ms-sd00270-oi00017-createotp
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
@@ -39,6 +38,7 @@ services:
     build:
       context: ./br-ms-sd00270-oi00018-validateotp
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
@@ -52,6 +52,7 @@ services:
     build:
       context: ./br-ms-sd00270-oi00020-updateotp
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
@@ -66,6 +67,7 @@ services:
     build:
       context: ./br-ms-sd00270-oi00016-otphandler
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     # TODO: Add environment variables
     ports:
       - 5084:8080
