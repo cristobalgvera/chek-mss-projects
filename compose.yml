@@ -3,13 +3,10 @@ services:
   redis:
     hostname: ${REDIS_HOSTNAME}
     image: redis:7.0.5-alpine
-    restart: always
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_AUTH
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
-    # ports:
-    #   - 6379:6379
     volumes:
       - redis-data:/data
   br-ms-sd00054-oi00005-ambassadorcorewallet:
@@ -17,6 +14,7 @@ services:
     build:
       context: ./br-ms-sd00054-oi00005-ambassadorcorewallet
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
@@ -30,6 +28,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00007-createpaymentcorewallet
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_URL}
     ports:
@@ -42,6 +41,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00013-getinformationcharge
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_URL}
     ports:
