@@ -3,13 +3,10 @@ services:
   redis:
     hostname: ${REDIS_HOSTNAME}
     image: redis:7.0.5-alpine
-    restart: always
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_AUTH
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
-    ports:
-      - 6379:6379
     volumes:
       - redis-data:/data
   br-ms-sd00054-oi00003-ambassadorremittances:
@@ -17,6 +14,7 @@ services:
     build:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
@@ -30,6 +28,7 @@ services:
     build:
       context: ./br-ms-sd00205-oi00007-getremittancepayers
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -42,6 +41,7 @@ services:
     build:
       context: ./br-ms-sd00205-oi00006-getremittancebanks
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -54,6 +54,7 @@ services:
     build:
       context: ./br-ms-sd00102-oi00016-webhookremittances
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -66,6 +67,7 @@ services:
     build:
       context: ./br-ms-sd00102-oi00015-remittiancepayment
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -78,6 +80,7 @@ services:
     build:
       context: ./br-ms-sd00205-oi00009-getremittanceflags
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -90,6 +93,7 @@ services:
     build:
       context: ./br-ms-sd00103-io00004-createremittancequote
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -102,6 +106,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00005-remittanceadmitquote
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -114,6 +119,7 @@ services:
     build:
       context: ./br-ms-sd00205-oi00008-getremittancecountries
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
@@ -125,6 +131,3 @@ services:
 
 volumes:
   redis-data:
-
-networks:
-  default:
