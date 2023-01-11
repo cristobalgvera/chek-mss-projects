@@ -7,8 +7,6 @@ services:
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
-    # ports:
-    #   - 6379:6379
     volumes:
       - redis-data:/data
   br-ms-sd00054-oi00003-ambassadorremittances:
@@ -16,6 +14,7 @@ services:
     build:
       context: ./br-ms-sd00054-oi00003-ambassadorremittances
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDIS_HOST: ${REDIS_HOSTNAME}
       REDIS_AUTH: ${REDIS_AUTH}
@@ -30,6 +29,7 @@ services:
     build:
       context: ./br-ms-sd00054-oi00005-ambassadorcorewallet
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
@@ -44,6 +44,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00008-capturemoneycorewallet
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_CORE_WALLET_URL}
     ports:
@@ -57,6 +58,7 @@ services:
     build:
       context: ./br-ms-sd00102-oi00015-remittiancepayment
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES_URL}
     ports:
@@ -69,6 +71,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00012-corewalletsaga
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       CAPTURE_MONEY_CORE_WALLET_URL: ${CAPTURE_MONEY_CORE_WALLET_URL}
       REMITTIANCE_PAYMENT_URL: ${REMITTIANCE_PAYMENT_URL}
@@ -88,6 +91,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00011-reversetechniquecorewallet
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_CORE_WALLET_URL}
     ports:
@@ -101,6 +105,7 @@ services:
     build:
       context: ./br-ms-sd00103-io00013-getinformationcharge
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_CORE_WALLET_URL}
     ports:
@@ -113,6 +118,7 @@ services:
     build:
       context: ./br-ms-sd00103-oi00007-createpaymentcorewallet
       target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_URL: ${AMBASSADOR_CORE_WALLET_URL}
     ports:
