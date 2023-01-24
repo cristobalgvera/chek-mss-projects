@@ -9,6 +9,26 @@ services:
       REDIS_AUTH: ${REDIS_AUTH}
     volumes:
       - redis-data:/data
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.dev.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - 4001:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=${DB_PORT}
+      - PMA_USER=${DB_USERNAME}
+      - PMA_PASSWORD=${DB_PASSWORD}
   br-ms-sd00054-oi00003-ambassadorremittances:
     hostname: ${AMBASSADOR_REMITTANCES_HOSTNAME}
     build:
@@ -77,6 +97,11 @@ services:
       REMITTIANCE_PAYMENT_URL: ${REMITTIANCE_PAYMENT_URL}
       REVERSE_TECHNIQUE_CORE_WALLET_URL: ${REVERSE_TECHNIQUE_CORE_WALLET_URL}
       GET_INFORMATION_CHARGE_URL: ${GET_INFORMATION_CHARGE_URL}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
     ports:
       - 4084:8080
     depends_on:
@@ -84,6 +109,8 @@ services:
       - br-ms-sd00103-oi00008-capturemoneycorewallet
       - br-ms-sd00103-oi00011-reversetechniquecorewallet
       - br-ms-sd00103-io00013-getinformationcharge
+      - mysql
+      - phpmyadmin
     volumes:
       - ./br-ms-sd00103-oi00012-corewalletsaga/src:/app/src
   br-ms-sd00103-oi00011-reversetechniquecorewallet:
@@ -130,3 +157,4 @@ services:
 
 volumes:
   redis-data:
+  mysql-data:
