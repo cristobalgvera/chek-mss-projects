@@ -81,6 +81,7 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES_URL}
+      WEBHOOK_URL: ${REMITTANCES_WEBHOOK_URL}
     ports:
       - 4083:8080
     depends_on:
