@@ -11,6 +11,7 @@ function get_repositories {
     br-ms-sd00102-oi00015-remittiancepayment
     br-ms-sd00205-oi00009-getremittanceflags
     br-ms-sd00054-oi00003-ambassadorremittances
+    br-ms-sd00103-oi00006-remittancepaymentstatus
   )
 
   for repository in "${repositories[@]}"; do
