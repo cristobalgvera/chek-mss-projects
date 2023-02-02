@@ -11,6 +11,7 @@
 !.dockerignore
 !README.md
 !setup.sh
+!init.dev.sql
 
 ## Folders
 !scripts
