@@ -1,5 +1,5 @@
 # Create a new Node 14 image
-FROM node:14 as base
+FROM node:18 as base
 # Set the working directory
 WORKDIR /app
 # Copy the package.json file
