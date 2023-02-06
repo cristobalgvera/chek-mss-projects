@@ -28,7 +28,7 @@ In order to use this project, you should follow this steps:
    your environment.
 
    > Commonly, you just need to change the `TARGET_STAGE` variable _(local,
-   > dev, qa, prod)_.
+   > dev, prod)_.
 
 1. Add all microservices projects that you need to launch to this folder.
 
@@ -57,7 +57,7 @@ In order to use this project, you should follow this steps:
    > You can run `sh setup.sh -n` in order to do it automatically.
 
 1. :rocket: Launch your projects with
-   `docker compose up -d` (`dev`, `prod` or `qa`) or
+   `docker compose up -d` (`dev` or `prod`) or
    `docker compose -f compose.yml -f compose.local.yml up -d` (`local`)
    (add `--build`, in case you need it)
 

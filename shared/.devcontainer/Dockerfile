@@ -1,5 +1,5 @@
-# Create a new Node 14 image
-FROM node:14 as dev
+# Create a new Node image
+FROM node:18 as dev
 
 # Set the working directory
 WORKDIR /app
