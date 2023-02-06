@@ -22,8 +22,5 @@ CMD [ "npm", "run", "start:dev" ]
 FROM installer as dev
 CMD [ "npm", "run", "start:debug" ]
 
-FROM builder as qa
-CMD [ "node", "dist/main.js" ]
-
 FROM builder as prod
-CMD [ "node", "dist/main.js" ]
+CMD [ "npm", "run", "start:prod" ]
