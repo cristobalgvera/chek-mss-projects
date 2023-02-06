@@ -1,4 +1,4 @@
-# Create a new Node 14 image
+# Create a new Node image
 FROM node:18 as dev
 
 # Set the working directory
