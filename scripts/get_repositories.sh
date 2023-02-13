@@ -10,8 +10,8 @@ function get_repositories {
     br-ms-sd00103-oi00011-reversetechniquecorewallet
     br-ms-sd00103-io00013-getinformationcharge
     br-ms-sd00103-oi00007-createpaymentcorewallet
-    br-ms-sd00054-oi00017-ambassadorremittanceswebhook
-    br-ms-sd00054-oi00018-corewalletsagacheckstate
+    br-ms-sd00054-oi00003-ambassadorremittanceswebhook
+    br-ms-sd00103-oi000013-corewalletsagacheckstate
   )
 
   for repository in "${repositories[@]}"; do

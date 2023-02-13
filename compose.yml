@@ -167,9 +167,9 @@ services:
       - br-ms-sd00054-oi00005-ambassadorcorewallet
     volumes:
       - ./br-ms-sd00103-oi00007-createpaymentcorewallet/src:/app/src
-  br-ms-sd00054-oi00017-ambassadorremittanceswebhook:
+  br-ms-sd00054-oi00003-ambassadorremittanceswebhook:
     build:
-      context: ./br-ms-sd00054-oi00017-ambassadorremittanceswebhook
+      context: ./br-ms-sd00054-oi00003-ambassadorremittanceswebhook
       target: ${TARGET_STAGE}
       dockerfile: Dockerfile.dev
     environment:
@@ -182,10 +182,10 @@ services:
       pubsub:
         condition: service_healthy
     volumes:
-      - ./br-ms-sd00054-oi00017-ambassadorremittanceswebhook/src:/app/src
-  br-ms-sd00054-oi00018-corewalletsagacheckstate:
+      - ./br-ms-sd00054-oi00003-ambassadorremittanceswebhook/src:/app/src
+  br-ms-sd00103-oi000013-corewalletsagacheckstate:
     build:
-      context: ./br-ms-sd00054-oi00018-corewalletsagacheckstate
+      context: ./br-ms-sd00103-oi000013-corewalletsagacheckstate
       target: ${TARGET_STAGE}
       dockerfile: Dockerfile.dev
     environment:
@@ -194,9 +194,9 @@ services:
       PUB_SUB_TOPIC: ${PUB_SUB_TOPIC}
       PUB_SUB_SUBSCRIPTION: ${PUB_SUB_SUBSCRIPTION}
     depends_on:
-      - br-ms-sd00054-oi00017-ambassadorremittanceswebhook
+      - br-ms-sd00054-oi00003-ambassadorremittanceswebhook
     volumes:
-      - ./br-ms-sd00054-oi00018-corewalletsagacheckstate/src:/app/src
+      - ./br-ms-sd00103-oi000013-corewalletsagacheckstate/src:/app/src
 
 volumes:
   redis-data:
