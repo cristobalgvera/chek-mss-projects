@@ -11,7 +11,7 @@ function get_repositories {
     br-ms-sd00103-io00013-getinformationcharge
     br-ms-sd00103-oi00007-createpaymentcorewallet
     br-ms-sd00054-oi00003-ambassadorremittanceswebhook
-    br-ms-sd00103-oi000013-corewalletsagacheckstate
+    br-ms-sd00103-oi00014-processremittancestatus
   )
 
   for repository in "${repositories[@]}"; do

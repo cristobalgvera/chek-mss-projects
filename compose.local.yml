@@ -27,6 +27,6 @@ services:
   br-ms-sd00054-oi00003-ambassadorremittanceswebhook:
     volumes:
       - ./br-ms-sd00054-oi00003-ambassadorremittanceswebhook/node_modules:/app/node_modules
-  br-ms-sd00103-oi000013-corewalletsagacheckstate:
+  br-ms-sd00103-oi00014-processremittancestatus:
     volumes:
-      - ./br-ms-sd00103-oi000013-corewalletsagacheckstate/node_modules:/app/node_modules
+      - ./br-ms-sd00103-oi00014-processremittancestatus/node_modules:/app/node_modules

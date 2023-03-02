@@ -185,9 +185,9 @@ services:
         condition: service_healthy
     volumes:
       - ./br-ms-sd00054-oi00003-ambassadorremittanceswebhook/src:/app/src
-  br-ms-sd00103-oi000013-corewalletsagacheckstate:
+  br-ms-sd00103-oi00014-processremittancestatus:
     build:
-      context: ./br-ms-sd00103-oi000013-corewalletsagacheckstate
+      context: ./br-ms-sd00103-oi00014-processremittancestatus
       target: ${TARGET_STAGE}
       dockerfile: Dockerfile.dev
     environment:
@@ -206,7 +206,7 @@ services:
       - mysql
       - phpmyadmin
     volumes:
-      - ./br-ms-sd00103-oi000013-corewalletsagacheckstate/src:/app/src
+      - ./br-ms-sd00103-oi00014-processremittancestatus/src:/app/src
 
 volumes:
   redis-data:
