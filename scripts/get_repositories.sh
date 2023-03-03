@@ -10,7 +10,7 @@ function get_repositories {
     br-ms-sd00103-oi00011-reversetechniquecorewallet
     br-ms-sd00103-io00013-getinformationcharge
     br-ms-sd00103-oi00007-createpaymentcorewallet
-    br-ms-sd00054-oi00003-ambassadorremittanceswebhook
+    br-ms-sd00102-oi00016-remittancestatusnotification
     br-ms-sd00103-oi00014-processremittancestatus
   )
 

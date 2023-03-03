@@ -167,9 +167,9 @@ services:
       - br-ms-sd00054-oi00005-ambassadorcorewallet
     volumes:
       - ./br-ms-sd00103-oi00007-createpaymentcorewallet/src:/app/src
-  br-ms-sd00054-oi00003-ambassadorremittanceswebhook:
+  br-ms-sd00102-oi00016-remittancestatusnotification:
     build:
-      context: ./br-ms-sd00054-oi00003-ambassadorremittanceswebhook
+      context: ./br-ms-sd00102-oi00016-remittancestatusnotification
       target: ${TARGET_STAGE}
       dockerfile: Dockerfile.dev
     environment:
@@ -184,7 +184,7 @@ services:
       pubsub:
         condition: service_healthy
     volumes:
-      - ./br-ms-sd00054-oi00003-ambassadorremittanceswebhook/src:/app/src
+      - ./br-ms-sd00102-oi00016-remittancestatusnotification/src:/app/src
   br-ms-sd00103-oi00014-processremittancestatus:
     build:
       context: ./br-ms-sd00103-oi00014-processremittancestatus
@@ -201,7 +201,7 @@ services:
     ports:
       - 4089:8080
     depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittanceswebhook
+      - br-ms-sd00102-oi00016-remittancestatusnotification
       - br-ms-sd00103-oi00011-reversetechniquecorewallet
       - mysql
       - phpmyadmin
