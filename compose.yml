@@ -110,11 +110,7 @@ services:
       REMITTIANCE_PAYMENT_URL: ${REMITTIANCE_PAYMENT_URL}
       REVERSE_TECHNIQUE_CORE_WALLET_URL: ${REVERSE_TECHNIQUE_CORE_WALLET_URL}
       GET_INFORMATION_CHARGE_URL: ${GET_INFORMATION_CHARGE_URL}
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
+      SAVE_MOVEMENTS_URL: ${SAVE_MOVEMENTS_URL}
     ports:
       - 4084:8080
     depends_on:
@@ -122,8 +118,7 @@ services:
       - br-ms-sd00103-oi00008-capturemoneycorewallet
       - br-ms-sd00103-oi00011-reversetechniquecorewallet
       - br-ms-sd00103-io00013-getinformationcharge
-      - mysql
-      - phpmyadmin
+      - br-ms-sd00103-oi00016-savemovements
     volumes:
       - ./br-ms-sd00103-oi00012-corewalletsaga/src:/app/src
   br-ms-sd00103-oi00011-reversetechniquecorewallet:
@@ -207,6 +202,25 @@ services:
       - phpmyadmin
     volumes:
       - ./br-ms-sd00103-oi00014-processremittancestatus/src:/app/src
+  br-ms-sd00103-oi00016-savemovements:
+    hostname: ${SAVE_MOVEMENTS_HOSTNAME}
+    build:
+      context: ./br-ms-sd00103-oi00016-savemovements
+      target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - 4090:8080
+    depends_on:
+      - mysql
+      - phpmyadmin
+    volumes:
+      - ./br-ms-sd00103-oi00016-savemovements/src:/app/src
 
 volumes:
   redis-data:

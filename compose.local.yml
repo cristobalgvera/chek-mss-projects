@@ -30,3 +30,6 @@ services:
   br-ms-sd00103-oi00014-processremittancestatus:
     volumes:
       - ./br-ms-sd00103-oi00014-processremittancestatus/node_modules:/app/node_modules
+  br-ms-sd00103-oi00016-savemovements:
+    volumes:
+      - ./br-ms-sd00103-oi00016-savemovements/node_modules:/app/node_modules
