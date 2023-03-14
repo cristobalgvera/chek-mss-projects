@@ -224,6 +224,25 @@ services:
       - phpmyadmin
     volumes:
       - ./br-ms-sd00103-oi00016-savemovements/src:/app/src
+  br-ms-sd00103-oi00017-getmovements:
+    hostname: ${GET_MOVEMENTS_HOSTNAME}
+    build:
+      context: ./br-ms-sd00103-oi00017-getmovements
+      target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - 4091:8080
+    depends_on:
+      - mysql
+      - phpmyadmin
+    volumes:
+      - ./br-ms-sd00103-oi00017-getmovements/src:/app/src
 
 volumes:
   redis-data:
