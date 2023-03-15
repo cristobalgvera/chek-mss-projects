@@ -191,6 +191,7 @@ services:
     environment:
       PUB_SUB_EMULATOR_HOST: ${PUB_SUB_EMULATOR_HOST}
       REVERSE_TECHNIQUE_CORE_WALLET_URL: ${REVERSE_TECHNIQUE_CORE_WALLET_URL}
+      GET_MOVEMENTS_URL: ${GET_MOVEMENTS_URL}
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
       DB_USERNAME: ${DB_USERNAME}
@@ -201,6 +202,7 @@ services:
     depends_on:
       - br-ms-sd00102-oi00016-remittancestatusnotification
       - br-ms-sd00103-oi00011-reversetechniquecorewallet
+      - br-ms-sd00103-oi00017-getmovements
       - mysql
       - phpmyadmin
     volumes:
