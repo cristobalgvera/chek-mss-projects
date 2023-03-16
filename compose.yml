@@ -112,6 +112,7 @@ services:
       GET_INFORMATION_CHARGE_URL: ${GET_INFORMATION_CHARGE_URL}
       SAVE_MOVEMENTS_URL: ${SAVE_MOVEMENTS_URL}
       PROCESS_STATUS_URL: ${PROCESS_STATUS_URL}
+      SEND_EMAIL_URL: ${SEND_EMAIL_URL}
     ports:
       - 4084:8080
     depends_on:
@@ -121,6 +122,7 @@ services:
       - br-ms-sd00103-io00013-getinformationcharge
       - br-ms-sd00103-oi00016-savemovements
       - br-ms-sd00103-oi00014-processremittancestatus
+      - br-ms-sd00025-oi00004-sendemail
     volumes:
       - ./br-ms-sd00103-oi00012-corewalletsaga/src:/app/src
   br-ms-sd00103-oi00011-reversetechniquecorewallet:
@@ -193,6 +195,7 @@ services:
       REVERSE_TECHNIQUE_CORE_WALLET_URL: ${REVERSE_TECHNIQUE_CORE_WALLET_URL}
       GET_MOVEMENTS_URL: ${GET_MOVEMENTS_URL}
       SAVE_MOVEMENTS_URL: ${SAVE_MOVEMENTS_URL}
+      SEND_EMAIL_SERVICE_URL: ${SEND_EMAIL_URL}
     ports:
       - 4089:8080
     depends_on:
@@ -200,6 +203,7 @@ services:
       - br-ms-sd00103-oi00011-reversetechniquecorewallet
       - br-ms-sd00103-oi00017-getmovements
       - br-ms-sd00103-oi00016-savemovements
+      - br-ms-sd00025-oi00004-sendemail
     volumes:
       - ./br-ms-sd00103-oi00014-processremittancestatus/src:/app/src
   br-ms-sd00103-oi00016-savemovements:
@@ -240,6 +244,18 @@ services:
       - phpmyadmin
     volumes:
       - ./br-ms-sd00103-oi00017-getmovements/src:/app/src
+  br-ms-sd00025-oi00004-sendemail:
+    hostname: ${SEND_EMAIL_HOSTNAME}
+    build:
+      context: ./br-ms-sd00025-oi00004-sendemail
+      target: ${TARGET_STAGE}
+      dockerfile: Dockerfile.dev
+    environment:
+      URL_SENDGRID_AMBASSADOR: http://localhost:3000
+    ports:
+      - 4092:8080
+    volumes:
+      - ./br-ms-sd00025-oi00004-sendemail/src:/app/src
 
 volumes:
   redis-data:

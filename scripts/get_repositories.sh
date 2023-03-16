@@ -14,6 +14,7 @@ function get_repositories {
     br-ms-sd00103-oi00014-processremittancestatus
     br-ms-sd00103-oi00016-savemovements
     br-ms-sd00103-oi00017-getmovements
+    br-ms-sd00025-oi00004-sendemail
   )
 
   for repository in "${repositories[@]}"; do
