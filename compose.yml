@@ -111,7 +111,6 @@ services:
       REVERSE_TECHNIQUE_CORE_WALLET_URL: ${REVERSE_TECHNIQUE_CORE_WALLET_URL}
       GET_INFORMATION_CHARGE_URL: ${GET_INFORMATION_CHARGE_URL}
       SAVE_MOVEMENTS_URL: ${SAVE_MOVEMENTS_URL}
-      PROCESS_STATUS_URL: ${PROCESS_STATUS_URL}
       SEND_EMAIL_URL: ${SEND_EMAIL_URL}
     ports:
       - 4084:8080
@@ -121,7 +120,6 @@ services:
       - br-ms-sd00103-oi00011-reversetechniquecorewallet
       - br-ms-sd00103-io00013-getinformationcharge
       - br-ms-sd00103-oi00016-savemovements
-      - br-ms-sd00103-oi00014-processremittancestatus
       - br-ms-sd00025-oi00004-sendemail
     volumes:
       - ./br-ms-sd00103-oi00012-corewalletsaga/src:/app/src
