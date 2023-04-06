@@ -27,6 +27,8 @@ services:
     environment:
       REDISHOST: ${REDIS_HOSTNAME}
       REDISAUTH: ${REDIS_AUTH}
+      REDISPORT: ${REDIS_PORT}
+      AMBASSADOR_OTP: ${AMBASSADOR_OTP}
     ports:
       - 5081:8080
     depends_on:
@@ -68,7 +70,10 @@ services:
       context: ./br-ms-sd00270-oi00016-otphandler
       target: ${TARGET_STAGE}
       dockerfile: Dockerfile.dev
-    # TODO: Add environment variables
+    environment:
+      OTP_CREATE_URL: ${OTP_CREATE_URL}
+      OTP_RETRY_URL: ${OTP_RETRY_URL}
+      OTP_VALIDATE_URL: ${OTP_VALIDATE_URL}
     ports:
       - 5084:8080
     depends_on:
