@@ -120,12 +120,8 @@ services:
       context: ./br-ms-sd00205-oi00008-getremittancecountries
       target: ${TARGET_STAGE}
       dockerfile: Dockerfile.dev
-    environment:
-      AMBASSADOR_REMITTANCES: ${AMBASSADOR_REMITTANCES}
     ports:
       - 8088:8080
-    depends_on:
-      - br-ms-sd00054-oi00003-ambassadorremittances
     volumes:
       - ./br-ms-sd00205-oi00008-getremittancecountries/src:/app/src
 
