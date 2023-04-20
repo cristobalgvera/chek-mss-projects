@@ -39,3 +39,6 @@ services:
   br-ms-sd00025-oi00004-sendemail:
     volumes:
       - ./br-ms-sd00025-oi00004-sendemail/node_modules:/app/node_modules
+  br-ms-sd00000-oi00000-walletauthorizationnotification:
+    volumes:
+      - ./br-ms-sd00000-oi00000-walletauthorizationnotification/node_modules:/app/node_modules
