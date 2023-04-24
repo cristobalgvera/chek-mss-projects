@@ -280,6 +280,8 @@ services:
       context: ./br-ms-sd00000-oi00000-processwalletauthorization
       target: dev
       dockerfile: Dockerfile.dev
+    environment:
+      UPDATE_REMITTANCE_URL: ${UPDATE_REMITTANCE_URL}
     ports:
       - 4094:8080
     volumes:
