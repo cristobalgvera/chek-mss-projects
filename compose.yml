@@ -282,6 +282,7 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       UPDATE_REMITTANCE_URL: ${UPDATE_REMITTANCE_URL}
+      CORE_WALLET_SAGA_URL: ${CORE_WALLET_SAGA_URL}
     ports:
       - 4094:8080
     volumes:
