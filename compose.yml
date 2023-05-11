@@ -259,9 +259,9 @@ services:
       - 4092:8080
     volumes:
       - ./br-ms-sd00025-oi00004-sendemail/src:/app/src
-  br-ms-sd00000-oi00000-walletauthorizationnotification:
+  br-ms-sd00054-oi00006-walletautorizationnotification:
     build:
-      context: ./br-ms-sd00000-oi00000-walletauthorizationnotification
+      context: ./br-ms-sd00054-oi00006-walletautorizationnotification
       target: dev
       dockerfile: Dockerfile.dev
     environment:
@@ -277,7 +277,7 @@ services:
       - pubsub
       - br-ms-sd00054-oi00007-processwalletauthorization
     volumes:
-      - ./br-ms-sd00000-oi00000-walletauthorizationnotification/src:/app/src
+      - ./br-ms-sd00054-oi00006-walletautorizationnotification/src:/app/src
   br-ms-sd00054-oi00007-processwalletauthorization:
     build:
       context: ./br-ms-sd00054-oi00007-processwalletauthorization
