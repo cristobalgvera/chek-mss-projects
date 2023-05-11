@@ -275,12 +275,12 @@ services:
       - 4093:8080
     depends_on:
       - pubsub
-      - br-ms-sd00000-oi00000-processwalletauthorization
+      - br-ms-sd00054-oi00007-processwalletauthorization
     volumes:
       - ./br-ms-sd00000-oi00000-walletauthorizationnotification/src:/app/src
-  br-ms-sd00000-oi00000-processwalletauthorization:
+  br-ms-sd00054-oi00007-processwalletauthorization:
     build:
-      context: ./br-ms-sd00000-oi00000-processwalletauthorization
+      context: ./br-ms-sd00054-oi00007-processwalletauthorization
       target: dev
       dockerfile: Dockerfile.dev
     environment:
@@ -292,7 +292,7 @@ services:
     ports:
       - 4094:8080
     volumes:
-      - ./br-ms-sd00000-oi00000-processwalletauthorization/src:/app/src
+      - ./br-ms-sd00054-oi00007-processwalletauthorization/src:/app/src
 
 volumes:
   redis-data:
